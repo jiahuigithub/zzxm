@@ -53,14 +53,13 @@ def yx(ck,content):
         lq = requests.post(url='https://webapi.qmai.cn/web/cmk-center/sign/takePartInSign',data=data,headers=headers).json()
         if lq['message'] == 'ok':
             print(f"签到情况：获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
-            content += (f"账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
+            push(f"账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
         else:
             print(f"签到情况：{lq['message']}")
-            content += (f"账号：{dl['data']['mobilePhone']}签到情况：{lq['message']}")
+            push(f"账号：{dl['data']['mobilePhone']}签到情况：{lq['message']}")
         
 def main():
     z = 1
-    content = ""
     for ck in bwcjck:
         try:
             print(f'登录第{z}个账号')
@@ -71,7 +70,6 @@ def main():
         except Exception as e:
             print('未知错误1')
             push('脚本出问题，需调整')
-    push(content)
 
 if __name__ == '__main__':
     try:
