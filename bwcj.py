@@ -55,6 +55,7 @@ def yx(ck):
             print(f"签到情况：获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
         else:
             print(f"签到情况：{lq['message']}")
+        push(f"账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
 
 
 def main():
