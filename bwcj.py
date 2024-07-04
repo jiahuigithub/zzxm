@@ -44,7 +44,7 @@ def push(content):
     else:
         print('')
 
-def yx(ck):
+def yx(ck,content):
     headers = {'qm-user-token': ck,'User-Agent': 'Mozilla/5.0 (Linux; Android 14; 2201122C Build/UKQ1.230917.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36 XWEB/1160065 MMWEBSDK/20231202 MMWEBID/2247 MicroMessenger/8.0.47.2560(0x28002F30) WeChat/arm64 Weixin NetType/5G Language/zh_CN ABI/arm64 MiniProgramEnv/android','qm-from': 'wechat'}
     dl = requests.get(url='https://webapi.qmai.cn/web/catering/crm/personal-info',headers=headers).json()
     if dl['message'] == 'ok':
@@ -53,23 +53,25 @@ def yx(ck):
         lq = requests.post(url='https://webapi.qmai.cn/web/cmk-center/sign/takePartInSign',data=data,headers=headers).json()
         if lq['message'] == 'ok':
             print(f"签到情况：获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
-            push(f"账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
+            content += (f"账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
         else:
             print(f"签到情况：{lq['message']}")
-            push(f"账号：{dl['data']['mobilePhone']}签到情况：{lq['message']}")
+            content += (f"账号：{dl['data']['mobilePhone']}签到情况：{lq['message']}")
         
 def main():
     z = 1
+    content = ""
     for ck in bwcjck:
         try:
             print(f'登录第{z}个账号')
             #print('----------------------')
-            yx(ck)
+            yx(ck,content)
             print('----------------------')
             z = z + 1
         except Exception as e:
             print('未知错误1')
             push('脚本出问题，需调整')
+    push(content)
 
 if __name__ == '__main__':
     try:
