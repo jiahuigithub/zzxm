@@ -64,7 +64,7 @@ def main():
         try:
             print(f'登录第{z}个账号')
             #print('----------------------')
-            yx(ck,content)
+            yx(ck)
             print('----------------------')
             z = z + 1
         except Exception as e:
