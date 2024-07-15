@@ -20,7 +20,7 @@ let msg = "";
     await getNotice();
     await getVersion("yang7758258/ohhh154@main/gjjj.js");
     await main();
-    //await SendMsg(msg);
+    await SendMsg(msg);
 
 })()
     .catch((e) => $.logErr(e))
