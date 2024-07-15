@@ -17,6 +17,7 @@ import requests
 import re
 import os
 import time
+message = ''
 response = requests.get("https://mkjt.jdmk.xyz/mkjt.txt")
 response.encoding = 'utf-8'
 txt = response.text
@@ -52,11 +53,13 @@ def yx(ck):
         data = {"activityId":"947079313798000641","appid":"10086"}
         lq = requests.post(url='https://webapi.qmai.cn/web/cmk-center/sign/takePartInSign',data=data,headers=headers).json()
         if lq['message'] == 'ok':
-            print(f"签到情况：获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")         
-            push(f"账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
+            print(f"签到情况：获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
+            message += f'账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}\n'
+            #push(f"账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
         else:
             print(f"签到情况：{lq['message']}")
-            push(f"账号：{dl['data']['mobilePhone']}签到情况：{lq['message']}")
+            message += f'账号：{dl['data']['mobilePhone']}签到情况：{lq['message']}\n'
+            #push(f"账号：{dl['data']['mobilePhone']}签到情况：{lq['message']}")
         
 def main():
     z = 1
@@ -74,6 +77,7 @@ def main():
 if __name__ == '__main__':
     try:
         main()
+        push(message)
     except Exception as e:
         print('未知错误2')
         push('脚本出问题，需调整')
