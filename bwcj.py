@@ -54,11 +54,11 @@ def yx(ck):
         lq = requests.post(url='https://webapi.qmai.cn/web/cmk-center/sign/takePartInSign',data=data,headers=headers).json()
         if lq['message'] == 'ok':
             print(f"签到情况：获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
-            message += f'账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}\n'
+            message += f"账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}\n"
             #push(f"账号：{dl['data']['mobilePhone']}获得{lq['data']['rewardDetailList'][0]['rewardName']}：{lq['data']['rewardDetailList'][0]['sendNum']}")
         else:
             print(f"签到情况：{lq['message']}")
-            message += f'账号：{dl['data']['mobilePhone']}签到情况：{lq['message']}\n'
+            message += f"账号：{dl['data']['mobilePhone']}签到情况：{lq['message']}\n"
             #push(f"账号：{dl['data']['mobilePhone']}签到情况：{lq['message']}")
         
 def main():
