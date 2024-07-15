@@ -73,11 +73,11 @@ def main():
         except Exception as e:
             print('未知错误1')
             push('脚本出问题，需调整')
+    push(message)
 
 if __name__ == '__main__':
     try:
         main()
-        push(message)
     except Exception as e:
         print('未知错误2')
         push('脚本出问题，需调整')
