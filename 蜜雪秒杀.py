@@ -75,7 +75,7 @@ class MXMS:
             time.sleep(0.75)
         print(datetime.datetime.now())
 if __name__ == '__main__':
-    atoken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUx'
+    atoken='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3eG1pbmlfMTYwMTQ5MDM3NTE3OTEzMjkyOSIsImlhdCI6MTcxNTEzMDk2OX0.PVV479Q99LKYGj3hBTo2skoAOMjcot6CuEogdeLD5AvrwAPfRiE-8rPp4APOVHYy5n45ellkYL_1dfF7S_mcWQ'
     marketingId='1816854086004391938'
     secretword = "好一朵美丽的茉莉花"
     fb_cont = 300
