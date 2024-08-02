@@ -21,6 +21,7 @@ let ua = ''
 let commonUa = ''
 let deviceId = ''
 let member = ''
+let lotteryId = ''
 let id = ''
 !(async () => {
     await main();
@@ -118,7 +119,7 @@ async function main() {
                 let readArticle = await activityPost(`/newshy/api/client/news/readArticle`,{"params":data})
                 console.log(`阅读：${readArticle?.success}`)
             }
-            let lotteryId = newsList.data[0].draw.activity_id;
+            lotteryId = newsList.data[0].draw.activity_id;
             console.log(`抽奖id：${lotteryId}`)
             let lotteryCount = await activityGet(`/lotteryhy/designh5/client/activity/${lotteryId}`)
             console.log(`拥有${lotteryCount.response.remain_counts}次抽奖`)
@@ -130,6 +131,13 @@ async function main() {
         } else {
             console.log("没有抽奖活动")
         }
+        let prizeInfo = await activityGet(`/lotteryhy/api/client/cj/my/prize/info/${lotteryId}?page=1&count=100`)
+        for (let prize of prizeInfo.data) {
+            if (prize.prize_type == 3 && prize.status != 2) {
+                console.log(`奖品：${prize.prize_content} code：${prize.prize_info.code}`)
+            }
+        }
+        console.log('微信打开链接：https://m.aihoge.com/lottery/awardBonus/drawRedPacket?title=领取红包\n输入code兑换红包')
     }
     if (notice) {
         await sendMsg(notice);
