@@ -1704,23 +1704,6 @@ if __name__ == '__main__':
     CK_NAME = 'url'
     print(f'''
 ✨✨✨ {APP_NAME}脚本✨✨✨
-✨ 功能：
-      积分签到
-      签到任务
-      采蜜任务
-      周年庆集卡
-✨ 抓包步骤：
-      打开{APP_NAME}APP或小程序
-      点击我的
-      打开抓包工具
-      点击“积分”，以下几种url之一：
-        https://mcs-mimp-web.sf-express.com/mcs-mimp/share/weChat/shareGiftReceiveRedirect
-        https://mcs-mimp-web.sf-express.com/mcs-mimp/share/app/shareRedirect
-    多账号#、@、换行分割 
-✨ 设置青龙变量：
-export {ENV_NAME}='url'多账号#分割
-
-✨✨✨ ✨✨✨
     ''')
 
     #分割变量
@@ -1741,3 +1724,4 @@ export {ENV_NAME}='url'多账号#分割
         for index, infos in enumerate(tokens):
             run_result = RUN(infos, index).main()
             if not run_result: continue
+        if send: send(f'{APP_NAME}挂机通知', send_msg)
